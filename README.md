@@ -1,0 +1,2 @@
+# IdealPcDisenio
+Diseño de Experimentos
