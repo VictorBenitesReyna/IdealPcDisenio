@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon"
+	href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAMAAAAKqCSwAAAAb1BMVEUAAAD////8/PxdXV0WFhbf39+Dg4MEBATr6+uxsbEtLS1cXFz29vYRERE4ODimpqZFRUXHx8fNzc3Y2NiLi4shISHo6OhAQEDT09O5ublVVVWTk5MbGxujo6Nvb28SEhI0NDQmJiZra2uYmJh+fn794qvdAAADhElEQVR4nO2bXXOqMBCGSRTBGhUQED+r1v//G09ATy/ObHAk7+bgzD4XnU6r6eOSJptNEkWCIAiCIAiCIAiCIAiCIAiCIAiCMIwk+Q9/c/om38tfzaC6SbSv4/fYNPluXZ73X8uQoq3qRGk1iLRZn1cBdZNo8b6qbum+M0W5CtULPKKqHr5mNwkTWh/Vh6790txCyPqqPm2LBX83AKh2snr+9RGqnWx6Zg4sSFW1jcyPrHMCTLWVbVaMpkhV206dfYiqbSjdf4iqxfC5glVtXNn6ADqqWsVcAyxa1TaWM82ycFXb2uFTVK0sz78Wg6pWm+OHqHJ1gUGqf9cATgzHDOtQNakbo5+x6wnrPJSqVj/Vl5NVtrivG9MvyzAROFTvr9K5aVZu3LJarYOpzvpUk0fJ4nhrlLPTMvTWIarPN1rZ0jjDWo5H9WGbxXQnsGPrdEyq7buvhavDLtCrFz9V+6qqIV21OmFFvVXtyy415WqTQXQP8FXtGqBBD63eqpY5HdbZCFW31JCl1W6EqmRY8Z0VoNqWaCnQExYkqkd6IgCPrBDVaE32gDtSFKOaRGdS9Wd8qnYMIEcr8BCAUa1iSjXHJgEY1SWRtGjVfI9QNdpRjcTYNTZIlRoCVD1K1ROpWokqQwcYpSqZB47y3yrJqUbAK0GM6nFDNVJga8IY1QuRXNuJdXyzFb28gheDMFE9kJkVuMACUaVSAPuT2whTayoHxBcuIarU84fPABDVilpawdNViGpJlyzQexeAQtAqpXoqvhToH9UlMal2XfUKFUVE9cdRtETXgbxLwcmBfvpanUdWCv4+0aZKpejn76HavmCbO0Q5doMGqna/vR5cGywsu9eDo7rcHmLnHhvL+QW3qptltVoc8v6dyxvc1LUdvJk72eVFbB4fyPn0VYEtrPSpvuLVNvsEb+pU1T28/BzopUq/qhdmy2DKc3YFvQ3EpWofP89BK4YjYfWFxZQhqmwHGPGqZyZT/ElL/OkKHlW7oOI7bY09wKxKxnPh0GPhhvW8PU5Vq5jxoDVQ1baxY75vgVG1KUzNfdkComrfb07sV1j8Vduc0MyzAPfD/FS73DVdhxD1UH2m2LqYXQLduOvuBr7Jr22dz7Jw9xiHHWA26SY/3ffXwNduq8mbLPbZ6jr9D5eDPQhv21OccBBcURAEQRAEQRAEQRAEQRAEQRAEQfiHP/sXNtQqYCthAAAAAElFTkSuQmCC">
+<title>IDEAL PC</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/dive.css">
+<!-- Custom fonts for this template-->
+<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="/css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<div th:fragment="nav" class="row topbar col-lg-12">
+		<ul class="navbar-nav ml-auto">
+
+			<!-- Nav Item - Search Dropdown (Visible Only XS) -->
+			<li class="nav-item dropdown no-arrow d-sm-none"><a
+				class="nav-link dropdown-toggle" href="#" id="searchDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
+			</a></li>
+
+
+
+			<!-- Nav Item - User Information -->
+			<li class="nav-item dropdown no-arrow"><a
+				class="nav-link dropdown-toggle" href="#" id="userDropdown"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"> <span class="title-content">Bienvenido:
+				</span><span th:text="${#authentication.getPrincipal().getUsername()}"></span><span>
+						con rol(es) de </span><span
+					th:text="${#authentication.getPrincipal().authorities}"></span> <span
+					class="mr-2 d-none d-lg-inline text-gray-600 small"><img
+						th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
+						align="middle"></img></span>
+			</a> <!-- Dropdown - User Information -->
+				<div
+					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+					aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#"> <i
+						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
+					</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="categories/index"
+						data-toggle="modal" data-target="#logoutModal"> <i
+						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+						Cerrar sesión
+					</a>
+				</div></li>
+
+		</ul>
+
+
+
+
+
+	</div>
+
+	<div th:fragment="logout" class="row topbar col-lg-12">
+
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">¿Listo para
+							salir?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">Seleccione "Cerrar sesión" a
+						continuación si está listo para finalizar su sesión actual.</div>
+					<div class="modal-footer">
+						<form id="logoutForm" th:action="@{/logout}" method="post">
+							<button class="btn btn-danger"
+								onclick="document.getElementById('logoutForm').submit();"
+								type="submit">Cerrar</button>
+							<button class="btn btn-dark" type="button" data-dismiss="modal"
+								th:href="@{/categories/list}">Cancel</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="/js/sb-admin-2.min.js"></script>
+
+
+
+
+</body>
+</html>

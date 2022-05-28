@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="icon"
+	href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAMAAAAKqCSwAAAAb1BMVEUAAAD////8/PxdXV0WFhbf39+Dg4MEBATr6+uxsbEtLS1cXFz29vYRERE4ODimpqZFRUXHx8fNzc3Y2NiLi4shISHo6OhAQEDT09O5ublVVVWTk5MbGxujo6Nvb28SEhI0NDQmJiZra2uYmJh+fn794qvdAAADhElEQVR4nO2bXXOqMBCGSRTBGhUQED+r1v//G09ATy/ObHAk7+bgzD4XnU6r6eOSJptNEkWCIAiCIAiCIAiCIAiCIAiCIAiCMIwk+Q9/c/om38tfzaC6SbSv4/fYNPluXZ73X8uQoq3qRGk1iLRZn1cBdZNo8b6qbum+M0W5CtULPKKqHr5mNwkTWh/Vh6790txCyPqqPm2LBX83AKh2snr+9RGqnWx6Zg4sSFW1jcyPrHMCTLWVbVaMpkhV206dfYiqbSjdf4iqxfC5glVtXNn6ADqqWsVcAyxa1TaWM82ycFXb2uFTVK0sz78Wg6pWm+OHqHJ1gUGqf9cATgzHDOtQNakbo5+x6wnrPJSqVj/Vl5NVtrivG9MvyzAROFTvr9K5aVZu3LJarYOpzvpUk0fJ4nhrlLPTMvTWIarPN1rZ0jjDWo5H9WGbxXQnsGPrdEyq7buvhavDLtCrFz9V+6qqIV21OmFFvVXtyy415WqTQXQP8FXtGqBBD63eqpY5HdbZCFW31JCl1W6EqmRY8Z0VoNqWaCnQExYkqkd6IgCPrBDVaE32gDtSFKOaRGdS9Wd8qnYMIEcr8BCAUa1iSjXHJgEY1SWRtGjVfI9QNdpRjcTYNTZIlRoCVD1K1ROpWokqQwcYpSqZB47y3yrJqUbAK0GM6nFDNVJga8IY1QuRXNuJdXyzFb28gheDMFE9kJkVuMACUaVSAPuT2whTayoHxBcuIarU84fPABDVilpawdNViGpJlyzQexeAQtAqpXoqvhToH9UlMal2XfUKFUVE9cdRtETXgbxLwcmBfvpanUdWCv4+0aZKpejn76HavmCbO0Q5doMGqna/vR5cGywsu9eDo7rcHmLnHhvL+QW3qptltVoc8v6dyxvc1LUdvJk72eVFbB4fyPn0VYEtrPSpvuLVNvsEb+pU1T28/BzopUq/qhdmy2DKc3YFvQ3EpWofP89BK4YjYfWFxZQhqmwHGPGqZyZT/ElL/OkKHlW7oOI7bY09wKxKxnPh0GPhhvW8PU5Vq5jxoDVQ1baxY75vgVG1KUzNfdkComrfb07sV1j8Vduc0MyzAPfD/FS73DVdhxD1UH2m2LqYXQLduOvuBr7Jr22dz7Jw9xiHHWA26SY/3ffXwNduq8mbLPbZ6jr9D5eDPQhv21OccBBcURAEQRAEQRAEQRAEQRAEQRAEQfiHP/sXNtQqYCthAAAAAElFTkSuQmCC">
+<title>TIENDA</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/dive.css">
+</head>
+
+<body>
+
+	<div th:replace="fragments/sidebar :: sidebar" id="panel"
+		class="activepanel"></div>
+
+	<div class="bg row">
+		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
+
+		<div class="content container row col-12">
+			<div class="col-6">
+				<h3>Registrar Recomendacion de Parte</h3>
+				<img class="imgform" alt="" th:src="@{/img/form/producto.png}">
+			</div>
+			<div class="col-6 frm-registro">
+				<form th:action="@{/recoparts/save}" method="post" class="row"
+					th:object="${recomendacionParte}" enctype="multipart/form-data">
+
+					<div class="col-6">
+
+
+						<div class="form-group">
+							<label for="idrace">ID:</label> <input type="text" readonly
+								class="form-control" th:field="*{idRecomendPart}"></input>
+						</div>
+
+						<div class="form-group">
+							<label for="nombre">Nombre:</label> <input type="text" required
+								th:field="*{nombreRecomendacionParte}" class="form-control"
+								id="nombre"></input>
+						</div>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('nombreRecomendacionParte')}"
+							th:errors="*{nombreRecomendacionParte}"></div>
+
+
+						<div class="form-group">
+							<label for="direccion">Veces:</label> <input type="number"
+								required th:field="*{cantidadReco}" class="form-control"
+								id="direccion"></input>
+						</div>
+
+						<!-- <div class="form-group">
+							<label for="number">Veces:</label>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">S/.</span>
+								</div>
+								<input type="number" th:field="*{precioHardware}"
+									class="form-control" required id="price"></input>
+								<div class="input-group-append">
+									<span class="input-group-text">.00</span>
+								</div>
+							</div>
+						</div> -->
+
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('cantidadReco')}"
+							th:errors="*{cantidadReco}"></div>
+
+
+
+
+					</div>
+
+
+					<div class="col-6">
+
+						<div class="form-group">
+							<label for="distrito">Hardware:</label> <select
+								class="form-control" th:field="*{hardware.idHardware}">
+								<option th:each="c: ${listaHardwares}"
+									th:value="${c.idHardware}" th:text="${c.nombreHardware}"
+									th:selected="(${c.idHardware} == *{hardware.idHardware})"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="distrito">Lista de Recomendados:</label> <select
+								class="form-control" th:field="*{recomendacion.idRecomendacion}">
+								<option th:each="c: ${listaRecomendaciones}"
+									th:value="${c.idRecomendacion}"
+									th:text="${c.nombreRecomendacion}+' - '+${c.usuario.username}"
+									th:selected="(${c.idRecomendacion} == *{recomendacion.idRecomendacion})"></option>
+							</select>
+						</div>
+
+
+
+
+						<div class="form-group">
+							<label for="fechaTienda">Fecha de Recomendacion:</label> <input
+								type="date" required th:field="*{fechaRegistro}" id="start"
+								name="trip-start" value="*{fechaRegistro}" min="2018-01-01"
+								max="2058-12-31">
+						</div>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('fechaRegistro')}"
+							th:errors="*{fechaRegistro}"></div>
+
+
+
+					</div>
+
+					<button style="margin: 0px 30px;" type="submit"
+						class="btnadd btn btn-primary">Grabar</button>
+					<a href="/recoparts/list" class="btn btn-danger">Cancelar</a>
+				</form>
+
+				<div th:if="${mensaje}" class="alert alert-danger">
+					<p th:text="${mensaje}"></p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div th:replace="fragments/nav :: logout" class="row topbar col-lg-12"></div>
+
+
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.slim.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/dive.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="icon"
+	href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAMAAAAKqCSwAAAAb1BMVEUAAAD////8/PxdXV0WFhbf39+Dg4MEBATr6+uxsbEtLS1cXFz29vYRERE4ODimpqZFRUXHx8fNzc3Y2NiLi4shISHo6OhAQEDT09O5ublVVVWTk5MbGxujo6Nvb28SEhI0NDQmJiZra2uYmJh+fn794qvdAAADhElEQVR4nO2bXXOqMBCGSRTBGhUQED+r1v//G09ATy/ObHAk7+bgzD4XnU6r6eOSJptNEkWCIAiCIAiCIAiCIAiCIAiCIAiCMIwk+Q9/c/om38tfzaC6SbSv4/fYNPluXZ73X8uQoq3qRGk1iLRZn1cBdZNo8b6qbum+M0W5CtULPKKqHr5mNwkTWh/Vh6790txCyPqqPm2LBX83AKh2snr+9RGqnWx6Zg4sSFW1jcyPrHMCTLWVbVaMpkhV206dfYiqbSjdf4iqxfC5glVtXNn6ADqqWsVcAyxa1TaWM82ycFXb2uFTVK0sz78Wg6pWm+OHqHJ1gUGqf9cATgzHDOtQNakbo5+x6wnrPJSqVj/Vl5NVtrivG9MvyzAROFTvr9K5aVZu3LJarYOpzvpUk0fJ4nhrlLPTMvTWIarPN1rZ0jjDWo5H9WGbxXQnsGPrdEyq7buvhavDLtCrFz9V+6qqIV21OmFFvVXtyy415WqTQXQP8FXtGqBBD63eqpY5HdbZCFW31JCl1W6EqmRY8Z0VoNqWaCnQExYkqkd6IgCPrBDVaE32gDtSFKOaRGdS9Wd8qnYMIEcr8BCAUa1iSjXHJgEY1SWRtGjVfI9QNdpRjcTYNTZIlRoCVD1K1ROpWokqQwcYpSqZB47y3yrJqUbAK0GM6nFDNVJga8IY1QuRXNuJdXyzFb28gheDMFE9kJkVuMACUaVSAPuT2whTayoHxBcuIarU84fPABDVilpawdNViGpJlyzQexeAQtAqpXoqvhToH9UlMal2XfUKFUVE9cdRtETXgbxLwcmBfvpanUdWCv4+0aZKpejn76HavmCbO0Q5doMGqna/vR5cGywsu9eDo7rcHmLnHhvL+QW3qptltVoc8v6dyxvc1LUdvJk72eVFbB4fyPn0VYEtrPSpvuLVNvsEb+pU1T28/BzopUq/qhdmy2DKc3YFvQ3EpWofP89BK4YjYfWFxZQhqmwHGPGqZyZT/ElL/OkKHlW7oOI7bY09wKxKxnPh0GPhhvW8PU5Vq5jxoDVQ1baxY75vgVG1KUzNfdkComrfb07sV1j8Vduc0MyzAPfD/FS73DVdhxD1UH2m2LqYXQLduOvuBr7Jr22dz7Jw9xiHHWA26SY/3ffXwNduq8mbLPbZ6jr9D5eDPQhv21OccBBcURAEQRAEQRAEQRAEQRAEQRAEQfiHP/sXNtQqYCthAAAAAElFTkSuQmCC">
+<title>Web</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/dive.css">
+</head>
+<body>
+
+	<div th:fragment="sidebar" id="panel" class="activepanel ">
+		<div id="cpanel1head" style="margin: 0px; height: 10vh;" class="row">
+			<h2 id="titulopanel" class="col-lg-10">Menú</h2>
+			<i id="iconpanel" class="fa fa-bars col-lg-2"></i>
+		</div>
+		<div id="cpanelbody" class="row">
+
+			<div class="panelitem">
+				<a th:href="@{/welcome/bienvenido}"> <i class="fa fa-home"
+					style="color: #000000;"></i>
+				</a>
+				<p>Inicio</p>
+			</div>
+			<div sec:authorize="hasRole('ROLE_ADMIN')" class="panelitem">
+				<a th:href="@{/usuario/list}"> <i class="fa fa-user-circle-o"
+					style="color: #CD2B2B;"></i>
+				</a>
+				<p>Usuarioㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p>
+			</div>
+
+
+
+			<div class="panelitem">
+				<a th:href="@{/distritos/list}"> <i class="fa fa-globe"
+					style="color: #1A34C5;"></i>
+				</a>
+				<p>Distritos</p>
+			</div>
+
+			<div class="panelitem">
+				<a th:href="@{/store/list}"> <i class="fa fa-shopping-bag"
+					style="color: #41C51A;"></i>
+				</a>
+				<p>Tiendasㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p>
+				<!-- NO BORRAR los caracteres invisibles SINO SE MUEVE EN EL SIDEBAR -->
+			</div>
+
+			<div class="panelitem">
+				<a th:href="@{/hardware/list}"> <i class="fa fa-microchip"
+					style="color: #CD2B2B;"></i>
+				</a>
+				<p>Hardwares</p>
+			</div>
+
+			<div class="panelitem">
+				<a th:href="@{/marca/list}"> <i class="fa fa-registered"
+					style="color: #2BC9CD;"></i>
+				</a>
+				<p>Marcasㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</p>
+			</div>
+
+
+			<div class="panelitem">
+				<a th:href="@{/tipouas/list}"> <i class="fa fa-hdd-o"
+					style="color: #CD2B90;"></i>
+				</a>
+				<p>Tipo U. Almacenamiento</p>
+			</div>
+
+			<div class="panelitem">
+				<a th:href="@{/tipomodulares/list}"> <i class="fa fa-wrench"
+					style="color: #2BCD88;"></i>
+				</a>
+				<p>Tipo Modular</p>
+			</div>
+
+			<div class="panelitem">
+				<a th:href="@{/tipopanel/list}"> <i class="fa fa-sun-o"
+					style="color: #5F2BCD;"></i>
+				</a>
+				<p>Tipo Panel</p>
+			</div>
+			<div class="panelitem">
+				<a th:href="@{/tamanomb/list}"> <i class="fa fa-crosshairs"
+					style="color: #B42BCD;"></i>
+				</a>
+				<p>Tamaño Motherboard</p>
+			</div>
+
+			<div class="panelitem">
+				<a th:href="@{/recomendations/list}"> <i class="fa fa-star"
+					style="color: #D6D010;"></i>
+				</a>
+				<p>Recomendaciones</p>
+			</div>
+
+
+
+
+			<div class="panelitem">
+				<a th:href="@{/recoparts/list}"> <i class="fa fa-star"
+					style="color: #D6D010;"></i>
+				</a>
+				<p>Recomendaciones Partes</p>
+			</div>
+
+			<div class="panelitem">
+				<a th:href="@{/usuario/reportes}"> <i class=" fas fa-bug"
+					style="color: #D6D010;"></i>
+				</a>
+				<p>Reportes</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
