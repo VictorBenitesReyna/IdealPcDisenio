@@ -159,7 +159,7 @@ public class UsuarioController {
 		uService.listarId(usuario.getId());
 		return "usuario/listUsuario";
 	}
-	@Secured("ROLE_ADMIN")
+	
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
@@ -176,7 +176,7 @@ public class UsuarioController {
 		}
 	}
 
-	@Secured("ROLE_ADMIN")
+
 	@RequestMapping("/delete")
 	public String deleteUsuario(Model model, @RequestParam(value = "id") int id) {
 		uService.delete(id);
@@ -185,7 +185,7 @@ public class UsuarioController {
 		model.addAttribute("users", new Users());
 		return "usuario/listUsuario";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/search")
 	public String findUsuario(@ModelAttribute Users usuario, Model model) {
 		List<Users> listaUsuarios;
