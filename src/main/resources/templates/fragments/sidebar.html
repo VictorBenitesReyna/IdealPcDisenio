@@ -28,7 +28,7 @@
 				</a>
 				<p>Inicio</p>
 			</div>
-			<div sec:authorize="hasRole('ROLE_ADMIN')" class="panelitem">
+			<div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" class="panelitem">
 				<a th:href="@{/usuario/list}"> <i class="fa fa-user-circle-o"
 					style="color: #CD2B2B;"></i>
 				</a>

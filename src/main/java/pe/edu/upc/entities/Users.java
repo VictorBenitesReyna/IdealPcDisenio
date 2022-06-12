@@ -14,17 +14,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
 public class Users implements Serializable {
-private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener caracteres especiales")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
 	@NotNull(message = "El nombre de la Usuario no puede estar vacio")
@@ -33,26 +33,28 @@ private static final long serialVersionUID = 1L;
 
 	@Column(length = 200)
 	private String password;
-	
+
+	@Size(min= 9 , message= "Teléfono debe tener solo 9 dígitos")
+	@Size(max= 9, message= "Teléfono debe tener solo 9 dígitos")
 	@Column(name = "phone", nullable = false)
 	private String phone;
-	
+
 	@Column(name = "email", nullable = false)
 	@Email(message = "Ingresar un email valido.")
 	private String email;
-	
+
 	@Column(name = "photo", nullable = true)
 	private String photo;
-	
+
 	private Boolean enabled;
-	
+
 	@Column(name = "registrationdate")
 	private Date registrationdate;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "idDistrito",nullable = false)
+	@JoinColumn(name = "idDistrito", nullable = false)
 	private Distrito distrito;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_role", nullable = false)
 	private Role roles;
@@ -62,10 +64,8 @@ private static final long serialVersionUID = 1L;
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(int id,
-			String username,
-			String password, String phone, String email, String photo,
-			Boolean enabled, Date registrationdate, Distrito distrito, Role roles) {
+	public Users(int id, String username, String password, String phone, String email, String photo, Boolean enabled,
+			Date registrationdate, Distrito distrito, Role roles) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -158,13 +158,5 @@ private static final long serialVersionUID = 1L;
 	public void setRoles(Role roles) {
 		this.roles = roles;
 	}
-	
-	
-
-	
-
-	
-	
-	
 
 }

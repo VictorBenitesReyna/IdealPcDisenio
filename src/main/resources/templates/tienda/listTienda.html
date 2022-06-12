@@ -80,6 +80,9 @@
 					</tr>
 				</tbody>
 			</table>
+			<div th:if="${#lists.isEmpty(listaTiendas)}">
+					<label>Tienda no registrada</label>
+			</div>
 			<div th:if="${mensaje}" class="alert alert-danger">
 				<p th:text="${mensaje}"></p>
 			</div>
