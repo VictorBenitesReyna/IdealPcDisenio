@@ -57,6 +57,7 @@ public class Tienda implements Serializable{
 	@Positive(message = "El telefono no puede ser negativo")
 	@Min(value = 100000000, message = "El telefono debe tener 9 digitos")
 	@Max(value = 999999999, message = "El telefono no debe ser mayor a 9 digitos")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-/:;<=>?@^_`{|}~]+", message = "Numero no válido")
 	@Column(name = "telefonoTienda", nullable = false)
 	private int telefonoTienda;
 
