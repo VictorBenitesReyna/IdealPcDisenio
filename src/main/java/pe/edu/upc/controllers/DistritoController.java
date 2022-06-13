@@ -32,7 +32,7 @@ public class DistritoController {
 		model.addAttribute("distrito", new Distrito());
 		return "distrito/distrito";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/list")
 	public String listDistritos(Model model) {
 		try {

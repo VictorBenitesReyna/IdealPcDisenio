@@ -95,7 +95,7 @@ public class TiendaController {
 			if (flag) {
 				return "redirect:/store/list";
 			} else {
-				model.addAttribute("mensaje", "Ocurrió un error");
+				model.addAttribute("mensaje", "Foto no válida");
 				return "redirect:/store/new";
 			}
 		}

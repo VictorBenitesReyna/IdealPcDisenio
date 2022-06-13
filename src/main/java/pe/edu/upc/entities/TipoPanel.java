@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.URL;
+
 @Entity
 @Table(name = "tipopanel")
 public class TipoPanel {
@@ -20,6 +22,7 @@ public class TipoPanel {
 	@Column(name = "nTipoPanel", nullable = false, length = 20)
 	private String nTipoPanel;
 
+	@URL
 	@Column(name = "urlTipoPanel", length = 300, nullable = false)
 	private String urlTipoPanel;
 
