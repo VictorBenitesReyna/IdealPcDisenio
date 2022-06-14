@@ -40,7 +40,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="nombre">Tienda:</label> <input type="text" required
+							<label for="nombre">Tienda:</label> <input type="text"
 								th:field="*{nombreTienda}" class="form-control" id="nombre"></input>
 						</div>
 						<div class="alert alert-danger"
@@ -50,7 +50,7 @@
 
 						<div class="form-group">
 							<label for="direccion">Dirección:</label> <input type="text"
-								required th:field="*{direccionTienda}" class="form-control"
+								th:field="*{direccionTienda}" class="form-control"
 								id="direccion"></input>
 						</div>
 						<div class="alert alert-danger"
@@ -59,15 +59,14 @@
 
 						<div class="form-group">
 							<label for="telefono">Teléfono:</label> <input type="text"
-								required th:field="*{telefonoTienda}" class="form-control"
-								id="telefono"></input>
+								th:field="*{telefonoTienda}" class="form-control" id="telefono"></input>
 						</div>
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('telefonoTienda')}"
 							th:errors="*{telefonoTienda}"></div>
 
 						<div class="form-group">
-							<label for="web">Web:</label> <input type="text" required
+							<label for="web">Web:</label> <input type="text"
 								th:field="*{webTienda}" class="form-control" id="web"></input>
 						</div>
 						<div class="alert alert-danger"
@@ -96,7 +95,7 @@
 
 						<div class="form-group">
 							<label for="fechaTienda">Fecha Registro:</label> <input
-								type="date" required th:field="*{fechaRegistro}" id="start"
+								type="date" th:field="*{fechaRegistro}" id="start"
 								name="trip-start" value="*{fechaRegistro}" min="2018-01-01"
 								max="2058-12-31">
 						</div>
@@ -108,10 +107,13 @@
 							<label for="file" class="">Foto:</label>
 							<div class="col-sm-6">
 								<input type="file" name="file" class="form-control"
-									th:text="${tienda.fotoTienda}" />
+									th:text="${tienda.fotoTienda}" required/>
 							</div>
 
 						</div>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('fotoTienda')}"
+							th:errors="*{fotoTienda}"></div>
 
 					</div>
 

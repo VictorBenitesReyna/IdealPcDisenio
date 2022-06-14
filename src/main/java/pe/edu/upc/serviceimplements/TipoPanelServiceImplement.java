@@ -16,33 +16,39 @@ public class TipoPanelServiceImplement implements ITipoPanelService {
 
 	@Autowired
 	private ITipoPanelRepository tpR;
-	
+
 	@Override
 	public boolean insert(TipoPanel tipopanel) {
-		TipoPanel rpta=tpR.save(tipopanel);
-		if(rpta==null) {
-			return false;
+		if (tipopanel.getUrlTipoPanel().endsWith(".com")) {
+			TipoPanel rpta = tpR.save(tipopanel);
+			if (rpta == null) {
+				return false;
+			} else {
+				return true;
+			}
 		}else {
-			return true;
+			return false;
 		}
-	}
-		@Override
-		public List<TipoPanel> list(){
-			return tpR.findAll();
-		}
-		
-		@Override
 
-		@Transactional(readOnly=true)
-		public TipoPanel listarId(int idTamanoMB) {
-			Optional<TipoPanel>op=tpR.findById(idTamanoMB);
-			return op.isPresent()?op.get():new TipoPanel();
-		}
-		@Override
-		public void delete(int idTamanoMB) {
-			// TODO Auto-generated method stub
-			tpR.deleteById(idTamanoMB);
-		}
-		
 	}
-	
+
+	@Override
+	public List<TipoPanel> list() {
+		return tpR.findAll();
+	}
+
+	@Override
+
+	@Transactional(readOnly = true)
+	public TipoPanel listarId(int idTamanoMB) {
+		Optional<TipoPanel> op = tpR.findById(idTamanoMB);
+		return op.isPresent() ? op.get() : new TipoPanel();
+	}
+
+	@Override
+	public void delete(int idTamanoMB) {
+		// TODO Auto-generated method stub
+		tpR.deleteById(idTamanoMB);
+	}
+
+}

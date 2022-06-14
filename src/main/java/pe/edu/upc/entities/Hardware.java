@@ -41,7 +41,7 @@ public class Hardware {
 	@DecimalMin("1.00")
 	@Positive
 	@Min(value = 1, message = "El precio no debe ser menor a 1")
-	@Max(value = 100, message = "El precio no debe ser mayor a 100")
+	@Max(value = 10000, message = "El precio no debe ser mayor a 100")
 	@Column(name = "precioHardware", columnDefinition = "Decimal(8,2)", nullable = false)
 	private Double precioHardware;
 

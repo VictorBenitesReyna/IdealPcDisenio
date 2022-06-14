@@ -19,12 +19,17 @@ public class TiendaServiceImplement implements ITiendaService{
 	private ITiendaRepository tR;
 	@Override
 	public boolean insert(Tienda tienda) {
-		Tienda rpta=tR.save(tienda);
-		if(rpta==null) {
-			return false;
+		if(tienda.getWebTienda().endsWith("com")) {
+			Tienda rpta=tR.save(tienda);
+			if(rpta==null) {
+				return false;
+			}else {
+				return true;
+			}
 		}else {
-			return true;
+			return false;
 		}
+		
 	}
 	@Override
 	public List<Tienda>list(){
