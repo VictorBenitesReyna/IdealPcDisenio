@@ -54,7 +54,7 @@ public class UsuarioController {
 	Date date = new Date();
 	java.sql.Date date2;
 
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/new")
 	public String newUsuario(Model model) {
 		model.addAttribute("listaDistritos", dService.list());
@@ -79,7 +79,7 @@ public class UsuarioController {
 		return "usuario/listUsuario";
 	}
 
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@RequestMapping("/save")
 	public String saveUsuario(@ModelAttribute @Valid Users usuario, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile photo, RedirectAttributes flash, SessionStatus status)
@@ -185,7 +185,7 @@ public class UsuarioController {
 		model.addAttribute("users", new Users());
 		return "usuario/listUsuario";
 	}
-	@Secured("ROLE_ADMIN")
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@RequestMapping("/search")
 	public String findUsuario(@ModelAttribute Users usuario, Model model) {
 		List<Users> listaUsuarios;

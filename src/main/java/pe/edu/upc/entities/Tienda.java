@@ -15,12 +15,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
+//import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -53,8 +53,8 @@ public class Tienda implements Serializable{
 	@Column(name = "nombreTienda", nullable = false)
 	private String nombreTienda;
 
-	@NotNull(message = "Debes poner un numero de contacto")
-	@Positive(message = "El telefono no puede ser negativo")
+	//@NotNull(message = "Debes poner un numero de contacto")
+	//@Positive(message = "El telefono no puede ser negativo")
 	@Min(value = 100000000, message = "El telefono debe tener 9 digitos")
 	@Max(value = 999999999, message = "El telefono no debe ser mayor a 9 digitos")
 	@Pattern(regexp = "[^!\"#$%&'()*+,-/:;<=>?@^_`{|}~]+", message = "Numero no válido")
