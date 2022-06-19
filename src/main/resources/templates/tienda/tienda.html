@@ -81,53 +81,51 @@
 					</div>
 
 
-					<div class="col-6">
-						<div class="form-group">
-							<label for="distrito">Distrito:</label> <select
-								class="form-control" th:field="*{distrito.idDistrito}">
-								<option th:each="c: ${listaDistritos}"
-									th:value="${c.idDistrito}" th:text="${c.nombreDistrito}"
-									th:selected="(${c.idDistrito} == *{distrito.idDistrito})"></option>
-							</select>
-						</div>
-
-
-
-						<div class="form-group">
-							<label for="fechaTienda">Fecha Registro:</label> <input
-								type="date" th:field="*{fechaRegistro}" id="start"
-								name="trip-start" value="*{fechaRegistro}" min="2018-01-01"
-								max="2058-12-31">
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('fechaRegistro')}"
-							th:errors="*{fechaRegistro}"></div>
-
-						<div class="form-group">
-							<label for="file" class="">Foto:</label>
-							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control"
-									th:text="${tienda.fotoTienda}" required/>
-							</div>
-
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('fotoTienda')}"
-							th:errors="*{fotoTienda}"></div>
-
+					<div class="form-group">
+						<label for="nombre">Distrito:</label> <select
+							th:field="*{distrito}" class="form-control" name="select">
+							<option value="Surco">Surco</option>
+							<option value="San borja" selected>San borja</option>
+							<option value="Miraflores">Miraflores</option>
+						</select>
 					</div>
 
-					<button style="margin: 0px 30px;" type="submit"
-						class="btnadd btn btn-primary">Grabar</button>
-					<a href="/store/list" class="btn btn-danger">Cancelar</a>
-				</form>
 
-				<div th:if="${mensaje}" class="alert alert-danger">
-					<p th:text="${mensaje}"></p>
-				</div>
+
+					<div class="form-group">
+						<label for="fechaTienda">Fecha Registro:</label> <input
+							type="date" th:field="*{fechaRegistro}" id="start"
+							name="trip-start" value="*{fechaRegistro}" min="2018-01-01"
+							max="2058-12-31">
+					</div>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('fechaRegistro')}"
+						th:errors="*{fechaRegistro}"></div>
+
+					<div class="form-group">
+						<label for="file" class="">Foto:</label>
+						<div class="col-sm-6">
+							<input type="file" name="file" class="form-control"
+								th:text="${tienda.fotoTienda}" required />
+						</div>
+
+					</div>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('fotoTienda')}"
+						th:errors="*{fotoTienda}"></div>
 			</div>
 
+			<button style="margin: 0px 30px;" type="submit"
+				class="btnadd btn btn-primary">Grabar</button>
+			<a href="/store/list" class="btn btn-danger">Cancelar</a>
+			</form>
+
+			<div th:if="${mensaje}" class="alert alert-danger">
+				<p th:text="${mensaje}"></p>
+			</div>
 		</div>
+
+	</div>
 	</div>
 	<div th:replace="fragments/nav :: logout" class="row topbar col-lg-12"></div>
 

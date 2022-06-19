@@ -45,7 +45,7 @@ public class MarcaController {
 	}
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
-	public String saveMarca(@Validated Companies marca, BindingResult result, Model model, SessionStatus status)
+	public String saveMarca(@Validated @ModelAttribute("marca") Companies marca, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
 			model.addAttribute("listaMarcas", mService.list());

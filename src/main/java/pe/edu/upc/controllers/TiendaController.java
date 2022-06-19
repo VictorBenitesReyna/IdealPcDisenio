@@ -26,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Tienda;
-import pe.edu.upc.serviceinterfaces.IDistritoService;
 import pe.edu.upc.serviceinterfaces.ISubirFotoService;
 import pe.edu.upc.serviceinterfaces.ITiendaService;
 
@@ -36,14 +35,11 @@ public class TiendaController {
 	@Autowired
 	private ITiendaService tService;
 	@Autowired
-	private IDistritoService dService;
-	@Autowired
 	private ISubirFotoService subirarchivoService;
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/new")
 	public String newTienda(Model model) {
 		model.addAttribute("tienda", new Tienda());
-		model.addAttribute("listaDistritos", dService.list());
 		model.addAttribute("tienda", new Tienda());
 		return "tienda/tienda";
 	}
@@ -65,7 +61,6 @@ public class TiendaController {
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
 			throws ParseException {
 		if (binRes.hasErrors()) {
-			model.addAttribute("listaDistritos", dService.list());
 			return "tienda/tienda";
 		} else {
 			if (!foto.isEmpty()) {
@@ -147,7 +142,6 @@ public class TiendaController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/store/list";
 		} else {
-			model.addAttribute("listaDistritos", dService.list());
 			model.addAttribute("tienda", objTienda);
 			return "tienda/tienda";
 		}
@@ -168,20 +162,6 @@ public class TiendaController {
 		model.addAttribute("listaTiendas", listaTiendas);
 		return "tienda/listTienda";
 	}
-	@RequestMapping("/search2")
-	public String findTienda2(@ModelAttribute Tienda tienda, Model model) {
-		List<Tienda> listaTiendas;
-		listaTiendas = tService.findByDistritoNombreDistrito(tienda.getDistrito().getNombreDistrito());
-		model.addAttribute("listaTiendas", listaTiendas);
-		return "tienda/listTienda";
-	}
 	
-	@RequestMapping("/reporte2")
-	public String quantityUsers(Map<String, Object> model) {
-		model.put("listaTiendas", tService.quantityStores());
-		System.out.println("cant usu: " + tService.quantityStores().size());
-		model.put("cantidad", tService.quantityStores().size());
-		return "reports/reportTiendas";
-	}
 
 }

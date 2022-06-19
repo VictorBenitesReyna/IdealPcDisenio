@@ -1,7 +1,6 @@
 package pe.edu.upc.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +25,7 @@ public class Users implements Serializable {
 	private int id;
 
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener caracteres especiales")
-	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un número")
+	@Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un númeroo")
 	@NotNull(message = "El nombre de la Usuario no puede estar vacio")
 	@Column(length = 30, unique = true)
 	private String username;
@@ -34,8 +33,8 @@ public class Users implements Serializable {
 	@Column(length = 200)
 	private String password;
 
-	@Size(min= 9 , message= "Teléfono debe tener solo 9 dígitos")
-	@Size(max= 9, message= "Teléfono debe tener solo 9 dígitos")
+	@Size(min = 9, message = "Teléfono debe tener solo 9 dígitos")
+	@Size(max = 9, message = "Teléfono debe tener solo 9 dígitos")
 	@Column(name = "phone", nullable = false)
 	private String phone;
 
@@ -48,12 +47,8 @@ public class Users implements Serializable {
 
 	private Boolean enabled;
 
-	@Column(name = "registrationdate")
-	private Date registrationdate;
-
-	@ManyToOne
-	@JoinColumn(name = "idDistrito", nullable = false)
-	private Distrito distrito;
+	@Column(name = "idDistrito", nullable = false)
+	private String distrito;
 
 	@ManyToOne
 	@JoinColumn(name = "id_role", nullable = false)
@@ -64,8 +59,11 @@ public class Users implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(int id, String username, String password, String phone, String email, String photo, Boolean enabled,
-			Date registrationdate, Distrito distrito, Role roles) {
+	public Users(int id,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del Usuario no puede contener caracteres especiales") @Pattern(regexp = "[^0-9]+", message = "El nombre del Usuario no puede contener un númeroo") @NotNull(message = "El nombre de la Usuario no puede estar vacio") String username,
+			String password,
+			@Size(min = 9, message = "Teléfono debe tener solo 9 dígitos") @Size(max = 9, message = "Teléfono debe tener solo 9 dígitos") String phone,
+			@Email(message = "Ingresar un email valido.") String email, String photo, Boolean enabled, String distrito, Role roles) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -74,7 +72,6 @@ public class Users implements Serializable {
 		this.email = email;
 		this.photo = photo;
 		this.enabled = enabled;
-		this.registrationdate = registrationdate;
 		this.distrito = distrito;
 		this.roles = roles;
 	}
@@ -135,19 +132,11 @@ public class Users implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public Date getRegistrationdate() {
-		return registrationdate;
-	}
-
-	public void setRegistrationdate(Date registrationdate) {
-		this.registrationdate = registrationdate;
-	}
-
-	public Distrito getDistrito() {
+	public String getDistrito() {
 		return distrito;
 	}
 
-	public void setDistrito(Distrito distrito) {
+	public void setDistrito(String distrito) {
 		this.distrito = distrito;
 	}
 
@@ -158,5 +147,10 @@ public class Users implements Serializable {
 	public void setRoles(Role roles) {
 		this.roles = roles;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 
 }

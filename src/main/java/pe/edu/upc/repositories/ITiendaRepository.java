@@ -15,14 +15,8 @@ public interface ITiendaRepository extends JpaRepository<Tienda, Integer> {
 	public int buscarTienda(@Param("name") String nombre);
 
 	//@Query(value="select * from Tienda t where t.id_distrito = (select idDistrito from Distrito where nombreDistrito =:ndistrito)", nativeQuery = true)
-	List<Tienda> findByDistritoNombreDistrito(String nombreDistrito);;
 	
 	List<Tienda> findBynombreTienda(String name);
 	
-	@Query(value="SELECT ti.*, d.nombre_distrito\r\n"
-			+ "from tienda ti \r\n"
-			+ "inner join distrito d on ti.id_distrito = d.id_distrito\r\n"
-			+ "where ti.fecha_registro >= (CURRENT_DATE - 30)",  nativeQuery = true)
-	public List<String[]> quantityStores();
 
 }

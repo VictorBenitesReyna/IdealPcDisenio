@@ -44,7 +44,7 @@ public class TamanoMBController {
 	}
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
-	public String saveTamanoMB(@Validated TamanoMB tamanomb, BindingResult result, Model model, SessionStatus status)
+	public String saveTamanoMB(@Validated @ModelAttribute("tamanomb") TamanoMB tamanomb, BindingResult result, Model model, SessionStatus status)
 	throws Exception{
 		if(result.hasErrors()) {
 			model.addAttribute("listaDistritos", mService.list());

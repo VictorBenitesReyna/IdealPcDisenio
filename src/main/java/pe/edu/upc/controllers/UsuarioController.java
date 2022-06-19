@@ -29,7 +29,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import pe.edu.upc.entities.Users;
-import pe.edu.upc.serviceinterfaces.IDistritoService;
 import pe.edu.upc.serviceinterfaces.ISubirFotoService;
 import pe.edu.upc.serviceinterfaces.ITipoUsuarioService;
 import pe.edu.upc.serviceinterfaces.IUsuarioService;
@@ -45,8 +44,6 @@ public class UsuarioController {
 	@Autowired
 	private ISubirFotoService subirarchivoService;
 	@Autowired
-	private IDistritoService dService;
-	@Autowired
 	private ITipoUsuarioService tService;
 	
 	boolean update= false;
@@ -57,13 +54,8 @@ public class UsuarioController {
 	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/new")
 	public String newUsuario(Model model) {
-		model.addAttribute("listaDistritos", dService.list());
 		model.addAttribute("listaTipos", tService.list());
 		Users newuser = new Users();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String formatdate = formatter.format(date);
-		date2 =  java.sql.Date.valueOf(formatdate);
-		newuser.setRegistrationdate(date2);
 		model.addAttribute("users", newuser);
 		return "usuario/usuario";
 	}
@@ -85,7 +77,6 @@ public class UsuarioController {
 			@RequestParam("file") MultipartFile photo, RedirectAttributes flash, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			model.addAttribute("listaDistritos", dService.list());
 			model.addAttribute("listaTipos", tService.list());
 			return "usuario/usuario";
 		} else {
@@ -168,7 +159,6 @@ public class UsuarioController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/usuario/list";
 		} else {
-			model.addAttribute("listaDistritos", dService.list());
 			model.addAttribute("listaTipos", tService.list());
 			model.addAttribute("users", objUsuario);
 			update = true;
@@ -196,7 +186,6 @@ public class UsuarioController {
 	
 	@GetMapping("/createAccount")
 	public String createAccount(Model model) {
-		model.addAttribute("listaDistritos", dService.list());
 		Users newuser = new Users();
 		model.addAttribute("users", newuser);
 		return "usuario/createAccount";
@@ -207,7 +196,6 @@ public class UsuarioController {
 			@RequestParam("file") MultipartFile photo, RedirectAttributes flash, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			model.addAttribute("listaDistritos", dService.list());
 			return "usuario/createAccount";
 		} else {
 			if (!photo.isEmpty()) {
@@ -229,10 +217,6 @@ public class UsuarioController {
 			usuario.setPassword(bcryptPassword);
 			
 
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-			String formatdate = formatter.format(date);
-			date2 =  java.sql.Date.valueOf(formatdate);
-			usuario.setRegistrationdate(date2);
 			usuario.setEnabled(true);
 			System.out.println("Rol: "+tService.listarRol("ROLE_USER").getRol());
 			usuario.setRoles(tService.listarRol("ROLE_USER"));

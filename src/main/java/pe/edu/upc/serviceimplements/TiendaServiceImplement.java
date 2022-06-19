@@ -59,14 +59,6 @@ public class TiendaServiceImplement implements ITiendaService{
 		// TODO Auto-generated method stub
 		return tR.findBynombreTienda(name);
 	}
-	@Override
-	public List<Tienda> findByDistritoNombreDistrito(String distrito) {
-		
-		return tR.findByDistritoNombreDistrito(distrito);
-	}
-	@Override
-	public List<String[]> quantityStores() {
-		// TODO Auto-generated method stub
-		return tR.quantityStores();
-	}
+
+
 }
