@@ -2,7 +2,6 @@ package pe.edu.upc.controllers;
 
 
 import java.security.Principal;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Users;
-import pe.edu.upc.serviceinterfaces.IDistritoService;
 import pe.edu.upc.serviceinterfaces.ITipoUsuarioService;
 
 @Controller
 @RequestMapping
 public class LoginController {
 	
-
-	@Autowired
-	private IDistritoService dService;
 	@Autowired
 	private ITipoUsuarioService tService;
 	
@@ -54,13 +49,8 @@ public class LoginController {
 	
 	@GetMapping("/createAccount")
 	public String createAccount(Model model) {
-		model.addAttribute("listaDistritos", dService.list());
 		model.addAttribute("listaTipos", tService.list());
 		Users newuser = new Users();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String formatdate = formatter.format(date);
-		date2 =  java.sql.Date.valueOf(formatdate);
-		newuser.setRegistrationdate(date2);
 		model.addAttribute("users", newuser);
 		return "usuario/createAccount";
 	}

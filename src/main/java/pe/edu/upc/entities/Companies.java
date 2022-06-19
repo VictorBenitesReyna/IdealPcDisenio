@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.URL;
+
 @Entity
 @Table(name = "companies")
 public class Companies {
@@ -19,7 +21,7 @@ public class Companies {
 	@Pattern(regexp = "[^0-9]+", message = "El nombre de la Marca no puede contener un número")
 	@Column(name = "nameCompany", nullable = false, length = 20)
 	private String nameCompany;
-
+	@URL
 	@Column(name = "urlCompany", length = 300, nullable = false)
 	private String urlCompany;
 

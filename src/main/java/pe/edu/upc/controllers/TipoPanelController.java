@@ -45,7 +45,7 @@ public class TipoPanelController {
 	}
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/save")
-	public String saveTipoPanel(@Validated TipoPanel tipopanel, BindingResult result, Model model, SessionStatus status)
+	public String saveTipoPanel(@Validated @ModelAttribute("tipopanel") TipoPanel tipopanel, BindingResult result, Model model, SessionStatus status)
 	throws Exception{
 		if(result.hasErrors()) {
 			model.addAttribute("listaDistritos", tpService.list());

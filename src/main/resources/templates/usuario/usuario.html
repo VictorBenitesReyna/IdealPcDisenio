@@ -43,15 +43,16 @@
 							<label for="nombre">Username:</label> <input type="text" required
 								th:field="*{username}" class="form-control" id="nombre"></input>
 						</div>
-						<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+						<div class="alert alert-danger" role="alert" th:text="${error}"
+							th:if="${error}"></div>
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
 
 
 						<div class="form-group">
-							<label for="tContrasena">Contraseña:</label> <input type="password"
-								required th:field="*{password}" class="form-control"
-								id="tContrasena"></input>
+							<label for="tContrasena">Contraseña:</label> <input minlength="8"
+								type="password" required th:field="*{password}"
+								class="form-control" id="tContrasena"></input>
 						</div>
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
@@ -70,7 +71,7 @@
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 
-						
+
 						<div class="alert alert-danger"
 							th:if="${#fields.hasErrors('enabled')}" th:errors="*{enabled}"></div>
 
@@ -81,75 +82,59 @@
 					</div>
 
 
-					<div class="col-6">
-						<div class="form-group">
-							<label for="distrito">Distrito:</label> <select
-								class="form-control" th:field="*{distrito.idDistrito}">
-								<option th:each="c: ${listaDistritos}"
-									th:value="${c.idDistrito}" th:text="${c.nombreDistrito}"
-									th:selected="(${c.idDistrito} == *{distrito.idDistrito})"></option>
-							</select>
+					<div class="form-group">
+						<label for="nombre">Distrito:</label> <select
+							th:field="*{distrito}" class="form-control" name="select">
+							<option value="Surco">Surco</option>
+							<option value="San borja" selected>San borja</option>
+							<option value="Miraflores">Miraflores</option>
+						</select>
+					</div>
+
+
+					<div class="form-group">
+						<label for="tipousuario">Tipo usuario:</label> <select
+							class="form-control" th:field="*{roles.id_role}">
+							<option th:each="c: ${listaTipos}" th:value="${c.id_role}"
+								th:text="${c.rol}"
+								th:selected="(${c.id_role} == *{roles.id_role})"></option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="name" class="col-sm-2 col-form-label">Estado:
+						</label>
+						<div class="col-sm-6">
+							<input type="checkbox" th:field="*{enabled}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('enabled')}" th:errors="*{enabled}"></small>
 						</div>
-
-
-						<div class="form-group">
-							<label for="tipousuario">Tipo usuario:</label> <select
-								class="form-control" th:field="*{roles.id_role}">
-								<option th:each="c: ${listaTipos}" th:value="${c.id_role}"
-									th:text="${c.rol}"
-									th:selected="(${c.id_role} == *{roles.id_role})"></option>
-							</select>
-						</div>
-						
-						<div class="form-group">
-							<label for="name" class="col-sm-2 col-form-label">Estado:
-							</label>
-							<div class="col-sm-6">
-								<input type="checkbox" th:field="*{enabled}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('enabled')}" th:errors="*{enabled}"></small>
-							</div>
-						</div>
+					</div>
 
 
 
-
-
-						<div class="form-group">
-							<label for="fechaUsuario">Fecha Registro:</label> <input
-								type="date" readonly th:field="*{registrationdate}" 
-								id="fechaUsuario" name="trip-start" value="*{registrationdate}"
-								min="2018-01-01" max="2058-12-31"> <!-- cmb -->
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('registrationdate')}"
-							th:errors="*{registrationdate}"></div>
-
-						<div class="form-group">
-							<label for="file" class="">Foto:</label>
-							<div class="col-sm-6">
-								<input type="file" required name="file"  class="form-control"
-									th:text="${users.photo}"
-									accept=".jpg,.png,.jpeg" />
-							</div>
-
+					<div class="form-group">
+						<label for="file" class="">Foto:</label>
+						<div class="col-sm-6">
+							<input type="file" required name="file" class="form-control"
+								th:text="${users.photo}" accept=".jpg,.png,.jpeg" />
 						</div>
 
 					</div>
-
-					<button style="margin: 0px 30px;" type="submit"
-						class="btnadd btn btn-primary">Grabar</button>
-					<a href="/usuario/list" class="btn btn-danger">Cancelar</a>
-				</form>
-
-				<div th:if="${mensaje}" class="alert alert-danger">
-					<p th:text="${mensaje}"></p>
-				</div>
 			</div>
 
+			<button style="margin: 0px 30px;" type="submit"
+				class="btnadd btn btn-primary">Grabar</button>
+			<a href="/usuario/list" class="btn btn-danger">Cancelar</a>
+			</form>
+
+			<div th:if="${mensaje}" class="alert alert-danger">
+				<p th:text="${mensaje}"></p>
+			</div>
 		</div>
+
+	</div>
 	</div>
 
 

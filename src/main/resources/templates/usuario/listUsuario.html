@@ -56,7 +56,6 @@
 						<th scope="col" class="text-center">Usuario</th>
 						<th scope="col" class="text-center">Teléfono</th>
 						<th scope="col" class="text-center">Correo</th>
-						<th scope="col" class="text-center">Registro</th>
 						<th scope="col" class="text-center">Estado</th>
 						<th scope="col" class="text-center">Distrito</th>
 						<th scope="col" class="text-center">Rol</th>
@@ -73,9 +72,8 @@
 						<td class="text-center" th:text="${usu.username}"></td>
 						<td class="text-center" th:text="${usu.phone}"></td>
 						<td class="text-center" th:text="${usu.email}"></td>
-						<td class="text-center" th:text="${usu.registrationdate}"></td>
 						<td class="text-center" th:text="${usu.enabled}"></td>
-						<td class="text-center" th:text="${usu.distrito.nombreDistrito}"></td>
+						<td class="text-center" th:text="${usu.distrito}"></td>
 						<td class="text-center" th:text="${usu.roles.rol}"></td>
 						<td class="text-center"><a class="btn btn-default btn-sm"
 							th:href="@{'/usuario/update/' + ${usu.id}}"> <i

@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 //import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.URL;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -55,11 +56,11 @@ public class Tienda implements Serializable{
 
 	//@NotNull(message = "Debes poner un numero de contacto")
 	//@Positive(message = "El telefono no puede ser negativo")
-	@Min(value = 100000000, message = "El telefono debe tener 9 digitos")
-	@Max(value = 999999999, message = "El telefono no debe ser mayor a 9 digitos")
+	@Size(min = 9, message = "Teléfono debe tener solo 9 dígitos")
+	@Size(max = 9, message = "Teléfono debe tener solo 9 dígitos")
 	@Pattern(regexp = "[^!\"#$%&'()*+,-/:;<=>?@^_`{|}~]+", message = "Numero no válido")
 	@Column(name = "telefonoTienda", nullable = false)
-	private int telefonoTienda;
+	private String telefonoTienda;
 
 	@URL
 	@Column(name = "webTienda", nullable = false)
@@ -76,17 +77,21 @@ public class Tienda implements Serializable{
 	@Column(name = "dateOfBirth")
 	private Date fechaRegistro;
 
-	@ManyToOne
-	@JoinColumn(name = "idDistrito", nullable = false)
-	private Distrito distrito;
+	@Column(name = "idDistrito", nullable = false)
+	private String distrito;
 
 	public Tienda() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Tienda(int idTienda, String fotoTienda, String direccionTienda, String nombreTienda, int telefonoTienda,
-			String webTienda, Distrito distrito, Date fechaRegistro) {
+	public Tienda(int idTienda, String fotoTienda,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-/:;<=>?@^_`{|}~]+", message = "Tienda no válida") @NotNull(message = "Tienda no válida") String direccionTienda,
+			@Pattern(regexp = "[^!\"#%'()*+,-./:;<=>?@^`{|}~]+", message = "Tienda no válida") @Pattern(regexp = "[^0-9]+", message = "Tienda no válida") @NotNull(message = "Tienda no válida") String nombreTienda,
+			@Size(min = 9, message = "Teléfono debe tener solo 9 dígitos") @Size(max = 9, message = "Teléfono debe tener solo 9 dígitos") @Pattern(regexp = "[^!\"#$%&'()*+,-/:;<=>?@^_`{|}~]+", message = "Numero no válido") String telefonoTienda,
+			@URL String webTienda,
+			@NotNull(message = "Fecha no válida") @PastOrPresent(message = "Fecha no válida") Date fechaRegistro,
+			String distrito) {
 		super();
 		this.idTienda = idTienda;
 		this.fotoTienda = fotoTienda;
@@ -94,8 +99,8 @@ public class Tienda implements Serializable{
 		this.nombreTienda = nombreTienda;
 		this.telefonoTienda = telefonoTienda;
 		this.webTienda = webTienda;
-		this.distrito = distrito;
 		this.fechaRegistro = fechaRegistro;
+		this.distrito = distrito;
 	}
 
 	public int getIdTienda() {
@@ -130,11 +135,11 @@ public class Tienda implements Serializable{
 		this.nombreTienda = nombreTienda;
 	}
 
-	public int getTelefonoTienda() {
+	public String getTelefonoTienda() {
 		return telefonoTienda;
 	}
 
-	public void setTelefonoTienda(int telefonoTienda) {
+	public void setTelefonoTienda(String telefonoTienda) {
 		this.telefonoTienda = telefonoTienda;
 	}
 
@@ -146,14 +151,6 @@ public class Tienda implements Serializable{
 		this.webTienda = webTienda;
 	}
 
-	public Distrito getDistrito() {
-		return distrito;
-	}
-
-	public void setDistrito(Distrito distrito) {
-		this.distrito = distrito;
-	}
-
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
@@ -161,5 +158,19 @@ public class Tienda implements Serializable{
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
+
+	public String getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(String distrito) {
+		this.distrito = distrito;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 
 }
