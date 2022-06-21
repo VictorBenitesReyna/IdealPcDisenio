@@ -11,11 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
+
 
 @Entity
 @Table(name = "Hardware")
@@ -24,13 +24,13 @@ public class Hardware {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idHardware;
 
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre del HARDWARE no puede contener caracteres especiales")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Hardware no válido")
 	@Pattern(regexp = "[^0-9]+", message = "El nombre del HARDWARE no puede contener un número")
 	@NotNull(message = "El nombre del HARDWARE no puede estar vacio")
 	@Column(name = "nombreHardware", nullable = false)
 	private String nombreHardware;
 
-	@Pattern(regexp = "[^!\"$%&'()*+,./:;<=>?@^`{|}~]+", message = "El nombre del MODELO no puede contener caracteres especiales")
+	@Pattern(regexp = "[^!\"$%&'()*+,./:;<=>?@^`{|}~]+", message = "Hardware no válido")
 	// @Pattern(regexp = "[^0-9]+", message = "El nombre del MODELO no puede
 	// contener un número")
 	@NotNull(message = "El nombre del MODELO no puede estar vacio")
@@ -40,10 +40,12 @@ public class Hardware {
 	@NotNull
 	@DecimalMin("1.00")
 	@Positive
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Precio estimado no válido")
+	@Pattern(regexp = "[qwertyuiopasdfghjklñzxcvbnm]+", message = "Precio estimado no válido")
+	@Pattern(regexp = "[QWERTYUIOPÑLKJHGFDSAZXCVBNM]+", message = "Precio estimado no válido")
 	@Min(value = 1, message = "El precio no debe ser menor a 1")
-	@Max(value = 10000, message = "El precio no debe ser mayor a 100")
-	@Column(name = "precioHardware", columnDefinition = "Decimal(8,2)", nullable = false)
-	private Double precioHardware;
+	@Column(name = "precioHardware", nullable = false)
+	private double precioHardware;
 
 	@Column(name = "fotoHardware", nullable = true)
 	private String fotoHardware;

@@ -8,13 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+//import javax.validation.constraints.Max;
+//import javax.validation.constraints.Min;
 //import javax.validation.constraints.NotBlank;
 //import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -35,9 +35,9 @@ public class Tienda implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTienda;
 
-	//@NotNull(message = "Foto no válida")
 	//@NotBlank(message = "Foto no válida")
 	//@NotEmpty(message = "Foto no válida")
+	//@NotNull(message = "Foto no válida")
 	@Column(name = "fotoTienda", nullable = false)
 	private String fotoTienda;
 
@@ -56,13 +56,13 @@ public class Tienda implements Serializable{
 
 	//@NotNull(message = "Debes poner un numero de contacto")
 	//@Positive(message = "El telefono no puede ser negativo")
-	@Size(min = 9, message = "Teléfono debe tener solo 9 dígitos")
-	@Size(max = 9, message = "Teléfono debe tener solo 9 dígitos")
-	@Pattern(regexp = "[^!\"#$%&'()*+,-/:;<=>?@^_`{|}~]+", message = "Numero no válido")
+	@Size(min = 9, message = "teléfono no válido")
+	@Size(max = 9, message = "teléfono no válido")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-/:;<=>?@^_`{|}~]+", message = "teléfono no válido")
 	@Column(name = "telefonoTienda", nullable = false)
 	private String telefonoTienda;
 
-	@URL
+	@URL(message = "web no válida")
 	@Column(name = "webTienda", nullable = false)
 	private String webTienda;
 
